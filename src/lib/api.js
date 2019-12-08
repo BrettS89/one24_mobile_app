@@ -1,0 +1,48 @@
+import { AsyncStorage } from 'react-native';
+import { URI } from '../config';
+import errorThrower from '../utils/errorThrower';
+
+async function getToken() {
+  const token = await AsyncStorage.getItem('token');
+  if (!token) throw new Error('no token');
+  return token;
+}
+
+export async function isLoggedIn() {
+  const res = await fetch(`${URI}/user/isloggedin`, {
+    method: 'get',
+    headers: {
+      'authorization': await getToken(),
+      'Content-Type': 'application/json',
+    },
+  });
+  const response = await res.json();
+  errorThrower(res, response);
+  return response;
+}
+
+export async function register(body) {
+  const res = await fetch(`${URI}/user/register`, {
+    method: 'post',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(body),
+  });
+  const response = await res.json();
+  errorThrower(res, response);
+  return response;
+}
+
+export async function login(body) {
+  const res = await fetch(`${URI}/user/login`, {
+    method: 'post',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(body),
+  });
+  const response = await res.json();
+  errorThrower(res, response);
+  return response;
+}
