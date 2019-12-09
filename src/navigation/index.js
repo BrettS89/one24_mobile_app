@@ -9,6 +9,7 @@ import { createStackNavigator } from 'react-navigation-stack';
 
 import colors from '../shared/styles/colors';
 import Icon2 from 'react-native-vector-icons/MaterialCommunityIcons';
+import Add from 'react-native-vector-icons/FontAwesome5'
 import Icon3 from 'react-native-vector-icons/Foundation';
 import Icon4 from 'react-native-vector-icons/MaterialCommunityIcons';
 
@@ -19,6 +20,7 @@ import Auth from '../containers/auth';
 
 // main
 import Feed from '../containers/feed';
+import AddPost from '../containers/addPost';
 
 const mainNav = createBottomTabNavigator({
   Feed: {
@@ -26,15 +28,32 @@ const mainNav = createBottomTabNavigator({
       Feed: {
         screen: Feed,
         navigationOptions: {
-          headerLeft: <View><Text>Feed</Text></View>,
+          headerLeft: <View style={{ paddingHorizontal: 15 }}><Text style={{ fontWeight: '700', color: colors.main, fontSize: 22 }}>Daily</Text></View>,
         },
       },
     }),
     navigationOptions: {
-      title: 'Find Hunt',
+      title: 'Feed',
       activeTintColor: colors.main,
       tabBarIcon: ({ tintColor }) => (
-        <Icon2 name="map-search-outline" size={28} color={tintColor}/>
+        <Icon2 name="message-bulleted" size={28} color={tintColor}/>
+      )
+    }
+  },
+  AddPost: {
+    screen: createStackNavigator({
+      AddPost: {
+        screen: AddPost,
+        navigationOptions: {
+          headerLeft: <View style={{ paddingHorizontal: 15 }}><Text style={{ fontWeight: '700', color: colors.main, fontSize: 22 }}>Baller app</Text></View>,
+        },
+      },
+    }),
+    navigationOptions: {
+      title: 'Add Post',
+      activeTintColor: colors.main,
+      tabBarIcon: ({ tintColor }) => (
+        <Add name="marker" size={20} color={tintColor}/>
       )
     }
   },

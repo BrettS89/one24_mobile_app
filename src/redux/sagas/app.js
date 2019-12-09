@@ -17,7 +17,6 @@ function * appLoadHandler({ payload }) {
   try {
     yield put({ type: actions.APP_LOADING });
     const { data } = yield call(api.isLoggedIn);
-    yield AsyncStorage.clear();
     // yield put({ type: actions.SET_USER_DATA, payload: data.user });
     // yield put({ type: actions.SET_MY_HUNTS, payload: data.myHunts });
     yield put({ type: actions.APP_NOT_LOADING });

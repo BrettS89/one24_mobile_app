@@ -1,5 +1,5 @@
 export default {
-  main: '#000',
+  main: '#7851A9',
   midGrey: '#ececec',
   midGrey2: '#d3d3d3',
 };

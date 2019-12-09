@@ -1,11 +1,17 @@
 import React from 'react';
-import { View, Text } from 'react-native';
+import { ScrollView, Text } from 'react-native';
 import styles from './styles';
+
+import Post from './subComponents/post';
 
 export default function feedView(props) {
   return (
-    <View style={styles.container}>
-      <Text>View</Text>
-    </View>
+    <ScrollView style={styles.container}>
+      <Post />
+      <Post />
+      <Post />
+      <Post />
+      <Post />
+    </ScrollView>
   );
 }
