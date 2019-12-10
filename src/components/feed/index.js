@@ -2,9 +2,15 @@ import React from 'react';
 import View from './view';
 
 class Feed extends React.Component {
+  componentDidMount() {
+    this.props.actions.getPosts();
+  }
+
   render() {
     return (
-      <View />
+      <View
+        posts={this.props.state.posts}
+      />
     );
   }
 }

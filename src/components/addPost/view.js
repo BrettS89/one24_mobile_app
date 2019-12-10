@@ -11,13 +11,17 @@ export default function addPostView(props) {
       <View style={styles.multiMedia}>
         <TouchableOpacity style={styles.multiButton}>
           <Photo name="md-images" size={32} color={colors.main} />
-          <Text style={styles.multiText}>Add photo</Text>
+          <Text style={styles.multiText}>
+            Add photo
+          </Text>
         </TouchableOpacity>
       </View>
       <AddInput
         placeholder="Your daily post ..."
+        onChangeText={props.onTextChange}
+        value={props.text}
       />
-      <TouchableOpacity style={styles.addPostButton}>
+      <TouchableOpacity style={styles.addPostButton} onPress={props.addPost}>
         <Text style={styles.addPostText}>Post</Text>
       </TouchableOpacity>
     </View>

@@ -21,6 +21,22 @@ export default function registrationView(props) {
 
         <View style={{ marginTop: 40 }}>
           <View style={styles.inputContainer}>
+          <Input
+              name="firstname"
+              labelText="firstname"
+              email={false}
+              placeholder="First name"
+              onChangeText={email => props.onTextChange(email, 'firstName')}
+              onSubmitHandler={props.onRegister}
+            />
+            <Input
+              name="lastname"
+              labelText="lastname"
+              email={false}
+              placeholder="Last name"
+              onChangeText={email => props.onTextChange(email, 'lastName')}
+              onSubmitHandler={props.onRegister}
+            />
             <Input
               name="email"
               labelText="email"

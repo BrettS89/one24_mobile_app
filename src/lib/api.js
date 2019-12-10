@@ -46,3 +46,30 @@ export async function login(body) {
   errorThrower(res, response);
   return response;
 }
+
+export async function addPost(body) {
+  const res = await fetch(`${URI}/post/add`, {
+    method: 'post',
+    headers: {
+      'Content-Type': 'application/json',
+      'authorization': await getToken(),
+    },
+    body: JSON.stringify(body),
+  });
+  const response = await res.json();
+  errorThrower(res, response);
+  return response;
+}
+
+export async function getPosts(offset) {
+  const res = await fetch(`${URI}/posts/get?offset=${offset}`, {
+    method: 'get',
+    headers: {
+      'Content-Type': 'application/json',
+      'authorization': await getToken(),
+    },
+  });
+  const response = await res.json();
+  errorThrower(res, response);
+  return response;
+}

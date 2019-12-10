@@ -14,9 +14,9 @@ export default StyleSheet.create({
     marginBottom: 10,
   },
   profileImage: {
-    height: 60,
-    borderRadius: 30,
-    width: 60,
+    height: 70,
+    borderRadius: 35,
+    width: 70,
     marginRight: 20,
   },
   userName: {
@@ -30,7 +30,8 @@ export default StyleSheet.create({
     fontSize: 16,
     flexWrap: 'wrap',
     lineHeight: 22,
-    marginBottom: 10,
+    marginBottom: 20,
+    marginTop: 10,
   },
   icons: {
     flexDirection: 'row',

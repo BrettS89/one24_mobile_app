@@ -3,6 +3,8 @@ import View from './view';
 
 class Register extends React.Component {
   state = {
+    firstName: '',
+    lastName: '',
     email: '',
     password: '',
   };

@@ -10,7 +10,7 @@ import { createStackNavigator } from 'react-navigation-stack';
 import colors from '../shared/styles/colors';
 import Icon2 from 'react-native-vector-icons/MaterialCommunityIcons';
 import Add from 'react-native-vector-icons/FontAwesome5'
-import Icon3 from 'react-native-vector-icons/Foundation';
+import UserIcon from 'react-native-vector-icons/FontAwesome5';
 import Icon4 from 'react-native-vector-icons/MaterialCommunityIcons';
 
 // auth
@@ -21,6 +21,7 @@ import Auth from '../containers/auth';
 // main
 import Feed from '../containers/feed';
 import AddPost from '../containers/addPost';
+import FindUsers from '../containers/findUsers';
 
 const mainNav = createBottomTabNavigator({
   Feed: {
@@ -28,7 +29,7 @@ const mainNav = createBottomTabNavigator({
       Feed: {
         screen: Feed,
         navigationOptions: {
-          headerLeft: <View style={{ paddingHorizontal: 15 }}><Text style={{ fontWeight: '700', color: colors.main, fontSize: 22 }}>Daily</Text></View>,
+          headerLeft: <View style={{ paddingHorizontal: 15 }}><Text style={{ fontWeight: '700', color: colors.main, fontSize: 22 }}>Baller app</Text></View>,
         },
       },
     }),
@@ -54,6 +55,23 @@ const mainNav = createBottomTabNavigator({
       activeTintColor: colors.main,
       tabBarIcon: ({ tintColor }) => (
         <Add name="marker" size={20} color={tintColor}/>
+      )
+    }
+  },
+  FindUsers: {
+    screen: createStackNavigator({
+      FindUsers: {
+        screen: FindUsers,
+        navigationOptions: {
+          headerLeft: <View style={{ paddingHorizontal: 15 }}><Text style={{ fontWeight: '700', color: colors.main, fontSize: 22 }}>Baller app</Text></View>,
+        },
+      },
+    }),
+    navigationOptions: {
+      title: 'Users',
+      activeTintColor: colors.main,
+      tabBarIcon: ({ tintColor }) => (
+        <UserIcon name="users" size={24} color={tintColor}/>
       )
     }
   },
