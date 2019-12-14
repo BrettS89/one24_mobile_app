@@ -12,6 +12,10 @@ import Icon2 from 'react-native-vector-icons/MaterialCommunityIcons';
 import Add from 'react-native-vector-icons/FontAwesome5'
 import UserIcon from 'react-native-vector-icons/FontAwesome5';
 import Icon4 from 'react-native-vector-icons/MaterialCommunityIcons';
+import SearchIcon from 'react-native-vector-icons/FontAwesome5';
+
+import Logo from '../shared/components/logo';
+import UserSearchBar from '../components/_misc/userSearchBar';
 
 // auth
 import Login from '../containers/login';
@@ -22,6 +26,7 @@ import Auth from '../containers/auth';
 import Feed from '../containers/feed';
 import AddPost from '../containers/addPost';
 import FindUsers from '../containers/findUsers';
+import Discover from '../containers/discover';
 
 const mainNav = createBottomTabNavigator({
   Feed: {
@@ -29,7 +34,7 @@ const mainNav = createBottomTabNavigator({
       Feed: {
         screen: Feed,
         navigationOptions: {
-          headerLeft: <View style={{ paddingHorizontal: 15 }}><Text style={{ fontWeight: '700', color: colors.main, fontSize: 22 }}>Baller app</Text></View>,
+          headerLeft: <Logo />,
         },
       },
     }),
@@ -41,12 +46,29 @@ const mainNav = createBottomTabNavigator({
       )
     }
   },
+  Discvoer: {
+    screen: createStackNavigator({
+      Discover: {
+        screen: Discover,
+        navigationOptions: {
+          headerLeft: <UserSearchBar />,
+        },
+      },
+    }),
+    navigationOptions: {
+      title: 'Discover',
+      activeTintColor: colors.main,
+      tabBarIcon: ({ tintColor }) => (
+        <UserIcon name="search" size={24} color={tintColor}/>
+      )
+    }
+  },
   AddPost: {
     screen: createStackNavigator({
       AddPost: {
         screen: AddPost,
         navigationOptions: {
-          headerLeft: <View style={{ paddingHorizontal: 15 }}><Text style={{ fontWeight: '700', color: colors.main, fontSize: 22 }}>Baller app</Text></View>,
+          headerLeft: <Logo />,
         },
       },
     }),
@@ -63,7 +85,7 @@ const mainNav = createBottomTabNavigator({
       FindUsers: {
         screen: FindUsers,
         navigationOptions: {
-          headerLeft: <View style={{ paddingHorizontal: 15 }}><Text style={{ fontWeight: '700', color: colors.main, fontSize: 22 }}>Baller app</Text></View>,
+          headerLeft: <UserSearchBar />,
         },
       },
     }),

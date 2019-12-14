@@ -1,9 +1,9 @@
 import React from 'react';
-import { View, FlatList } from 'react-native';
+import { View, Text, FlatList } from 'react-native';
 import styles from './styles';
-import Post from './subComponents/post';
+import Post from '../feed/subComponents/post';
 
-export default function feedView({ posts }) {
+export default function discoverView({ posts }) {
   return (
     <View style={styles.container}>
       <FlatList
@@ -12,10 +12,10 @@ export default function feedView({ posts }) {
         showsVerticalScrollIndicator={false}
         renderItem={post => (
           <Post
-            post={{...post.item, following: true}}
+            post={post.item}
           />
         )}
       />
     </View>
-  );
+  )
 }

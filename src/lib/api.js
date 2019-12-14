@@ -73,3 +73,69 @@ export async function getPosts(offset) {
   errorThrower(res, response);
   return response;
 }
+
+export async function discoverPosts(offset) {
+  const res = await fetch(`${URI}/posts/discover?offset=${offset}`, {
+    method: 'get',
+    headers: {
+      'Content-Type': 'application/json',
+      'authorization': await getToken(),
+    },
+  });
+  const response = await res.json();
+  errorThrower(res, response);
+  return response;
+}
+
+export async function follow(body) {
+  const res = await fetch(`${URI}/user/follow`, {
+    method: 'post',
+    headers: {
+      'Content-Type': 'application/json',
+      'authorization': await getToken(),
+    },
+    body: JSON.stringify(body),
+  });
+  const response = await res.json();
+  errorThrower(res, response);
+  return response;
+}
+
+export async function unFollow(body) {
+  const res = await fetch(`${URI}/user/unfollow?id=${body}`, {
+    method: 'delete',
+    headers: {
+      'Content-Type': 'application/json',
+      'authorization': await getToken(),
+    },
+  });
+  const response = await res.json();
+  errorThrower(res, response);
+  return response;
+}
+
+export async function getUsers(offset) {
+  const res = await fetch(`${URI}/users/get?offset=${offset}`, {
+    mehtod: 'get',
+    headers: {
+      'Content-Type': 'application/json',
+      'authorization': await getToken(),
+    },
+  });
+  const response = await res.json();
+  errorThrower(res, response);
+  return response;
+}
+
+export async function searchUsers(name, offset) {
+  const res = await fetch(`${URI}/users/search?name=${name}&offset=${offset}`, {
+    method: 'get',
+    headers: {
+      'Content-Type': 'application/json',
+      'authorization': await getToken(),
+    },
+  });
+  const response = await res.json();
+  errorThrower(res, response);
+  return response;
+}

@@ -4,14 +4,19 @@ import {
 } from 'redux-saga/effects';
 import * as actions from '../actions/types';
 import * as api from '../../lib/api';
-import { postsState } from '../selectors';
+import { postsState, discoverPostsState } from '../selectors';
 
 export default [
-  getPostsWatcher
+  getPostsWatcher,
+  discoverPostsWatcher,
 ];
 
 function * getPostsWatcher() {
   yield takeLatest(actions.GET_POSTS, getPostsHandler);
+}
+
+function * discoverPostsWatcher() {
+  yield takeLatest(actions.DISCOVER_POSTS, discoverPostsHandler);
 }
 
 function * getPostsHandler() {
@@ -24,5 +29,15 @@ function * getPostsHandler() {
   } catch(e) {
     yield put({ type: actions.APP_NOT_LOADING });
     console.log('getPosts error: ', e.message);
+  }
+}
+
+function * discoverPostsHandler() {
+  try {
+    const posts = yield select(discoverPostsState);
+    const { data } = yield call(api.discoverPosts, posts.length);
+    yield put({ type: actions.SET_DISCOVER_POSTS, payload: data });
+  } catch(e) {
+    console.log('discoverPostsHandler error:', e);
   }
 }

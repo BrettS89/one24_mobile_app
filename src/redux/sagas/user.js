@@ -8,6 +8,8 @@ import * as api from '../../lib/api';
 export default [
   loginWatcher,
   registerWatcher,
+  followWatcher,
+  unfollowWatcher,
 ];
 
 function * registerWatcher() {
@@ -16,6 +18,14 @@ function * registerWatcher() {
 
 function * loginWatcher() {
   yield takeLatest(actions.ON_LOGIN, loginHandler);
+}
+
+function * followWatcher() {
+  yield takeLatest(actions.ON_FOLLOW, followHandler);
+}
+
+function * unfollowWatcher() {
+  yield takeLatest(actions.ON_UNFOLLOW, unfollowHandler);
 }
 
 function * loginHandler({ payload: { form, navigate } }) {
@@ -39,7 +49,7 @@ function * registerHandler({ payload: { form, navigate } }) {
     yield put({ type: actions.APP_LOADING });
     const res = yield call(api.register, form);
     yield AsyncStorage.setItem('token', res.token);
-    navigate();
+    // navigate();
     yield put({ type: actions.APP_NOT_LOADING });
   } catch(e) {
     yield put({ type: actions.SET_REGISTRATION_ERROR, payload: e.message });
@@ -48,3 +58,20 @@ function * registerHandler({ payload: { form, navigate } }) {
   }
 }
 
+function * followHandler({ payload }) {
+  try {
+    yield call(api.follow, payload);
+  } catch(e) {
+    console.log('follow error: ', e.message);
+  }
+}
+
+function * unfollowHandler({ payload }) {
+  try {
+    console.log('U WOT', payload);
+
+    yield call (api.unFollow, payload);
+  } catch(e) {
+    console.log('unfollow error: ', e.message);
+  }
+}

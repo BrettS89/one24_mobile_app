@@ -1,4 +1,5 @@
 import { StyleSheet } from 'react-native';
+import colors from '../../shared/styles/colors';
 
 export default StyleSheet.create({
   container: {
@@ -38,5 +39,8 @@ export default StyleSheet.create({
   },
   middleIcon: {
     marginHorizontal: 15,
+  },
+  userIcon: {
+    padding: 10,
   }
 });
