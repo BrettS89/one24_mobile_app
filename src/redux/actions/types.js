@@ -33,5 +33,7 @@ export const ADD_POST = 'ADD_POST';
 export const GET_POSTS = 'GET_POSTS';
 export const SET_POSTS = 'SET_POSTS';
 export const DISCOVER_POSTS = 'DISCOVER_POSTS';
+export const SEARCH_POSTS = 'SEARCH_POSTS';
 export const SET_DISCOVER_POSTS = 'SET_DISCOVER_POSTS';
 export const SET_NEW_DISCOVER_POSTS = 'SET_NEW_DISCOVER_POSTS';
+export const SET_DISCOVER_INPUT = 'SET_SEARCH_INPUT';

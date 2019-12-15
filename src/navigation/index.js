@@ -16,6 +16,7 @@ import SearchIcon from 'react-native-vector-icons/FontAwesome5';
 
 import Logo from '../shared/components/logo';
 import UserSearchBar from '../components/_misc/userSearchBar';
+import PostSearchBar from '../components/_misc/postSearchBar';
 
 // auth
 import Login from '../containers/login';
@@ -46,12 +47,12 @@ const mainNav = createBottomTabNavigator({
       )
     }
   },
-  Discvoer: {
+  Discover: {
     screen: createStackNavigator({
       Discover: {
         screen: Discover,
         navigationOptions: {
-          headerLeft: <UserSearchBar />,
+          headerLeft: <PostSearchBar />,
         },
       },
     }),

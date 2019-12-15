@@ -87,6 +87,19 @@ export async function discoverPosts(offset) {
   return response;
 }
 
+export async function searchPosts(term, offset) {
+  const res = await fetch(`${URI}/posts/search?term=${term}&offset=${offset}`, {
+    method: 'get',
+    headers: {
+      'Content-Type': 'application/json',
+      'authorization': await getToken(),
+    },
+  });
+  const response = await res.json();
+  errorThrower(res, response);
+  return response;
+}
+
 export async function follow(body) {
   const res = await fetch(`${URI}/user/follow`, {
     method: 'post',

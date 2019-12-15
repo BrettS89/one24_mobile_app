@@ -1,4 +1,3 @@
-import { AsyncStorage } from 'react-native';
 import {
   call, put, takeLatest, select, fork,
 } from 'redux-saga/effects';
@@ -9,6 +8,7 @@ import { postsState, discoverPostsState } from '../selectors';
 export default [
   getPostsWatcher,
   discoverPostsWatcher,
+  searchPostsWatcher,
 ];
 
 function * getPostsWatcher() {
@@ -17,6 +17,10 @@ function * getPostsWatcher() {
 
 function * discoverPostsWatcher() {
   yield takeLatest(actions.DISCOVER_POSTS, discoverPostsHandler);
+}
+
+function * searchPostsWatcher() {
+  yield takeLatest(actions.SEARCH_POSTS, searchPostsHandler);
 }
 
 function * getPostsHandler() {
@@ -39,5 +43,20 @@ function * discoverPostsHandler() {
     yield put({ type: actions.SET_DISCOVER_POSTS, payload: data });
   } catch(e) {
     console.log('discoverPostsHandler error:', e);
+  }
+}
+
+function * searchPostsHandler({ payload }) {
+  try {
+    yield put({ type: actions.SET_DISCOVER_INPUT, payload, });
+    if (!payload.length) {
+      yield put({ type: actions.SET_NEW_DISCOVER_POSTS, payload: [] });
+      return yield discoverPostsHandler();
+    }
+    yield put({ type: actions.SET_NEW_DISCOVER_POSTS, payload: [] });
+    const { data } = yield call(api.searchPosts, payload, 0);
+    yield put({ type: actions.SET_NEW_DISCOVER_POSTS, payload: data });
+  } catch(e) {
+    console.log('searchPostsHandler', e);
   }
 }

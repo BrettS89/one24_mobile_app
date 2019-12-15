@@ -1,4 +1,4 @@
-import { SET_POSTS, SET_DISCOVER_POSTS, SET_NEW_DISCOVER_POSTS } from '../actions/types';
+import { SET_POSTS, SET_DISCOVER_POSTS, SET_NEW_DISCOVER_POSTS, SET_DISCOVER_INPUT } from '../actions/types';
 
 const INITIAL_STATE = {
   searchInput: '',
@@ -25,6 +25,12 @@ export default (state = INITIAL_STATE, { type, payload }) => {
       return {
         ...state,
         discoverPosts: payload,
+      };
+
+    case SET_DISCOVER_INPUT:
+      return {
+        ...state,
+        searchInput: payload,
       };
 
     default:
