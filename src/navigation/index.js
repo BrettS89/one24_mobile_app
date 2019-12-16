@@ -17,6 +17,7 @@ import SearchIcon from 'react-native-vector-icons/FontAwesome5';
 import Logo from '../shared/components/logo';
 import UserSearchBar from '../components/_misc/userSearchBar';
 import PostSearchBar from '../components/_misc/postSearchBar';
+import ProfileLink from '../components/_misc/profileLink';
 
 // auth
 import Login from '../containers/login';
@@ -28,6 +29,7 @@ import Feed from '../containers/feed';
 import AddPost from '../containers/addPost';
 import FindUsers from '../containers/findUsers';
 import Discover from '../containers/discover';
+import MyProfile from '../containers/myProfile';
 
 const mainNav = createBottomTabNavigator({
   Feed: {
@@ -36,6 +38,7 @@ const mainNav = createBottomTabNavigator({
         screen: Feed,
         navigationOptions: {
           headerLeft: <Logo />,
+          headerRight: <ProfileLink />,
         },
       },
     }),
@@ -53,6 +56,7 @@ const mainNav = createBottomTabNavigator({
         screen: Discover,
         navigationOptions: {
           headerLeft: <PostSearchBar />,
+          headerRight: <ProfileLink />,
         },
       },
     }),
@@ -70,6 +74,7 @@ const mainNav = createBottomTabNavigator({
         screen: AddPost,
         navigationOptions: {
           headerLeft: <Logo />,
+          headerRight: <ProfileLink />,
         },
       },
     }),
@@ -87,6 +92,7 @@ const mainNav = createBottomTabNavigator({
         screen: FindUsers,
         navigationOptions: {
           headerLeft: <UserSearchBar />,
+          headerRight: <ProfileLink />,
         },
       },
     }),
@@ -142,9 +148,38 @@ const authNav = createBottomTabNavigator({
   },
 });
 
+const noBottomNav = createBottomTabNavigator({
+  MyProfile: {
+    screen: createStackNavigator({
+      MyProfile: {
+        screen: MyProfile,
+        navigationOptions: {
+
+        },
+      },
+    }),
+    navigationOptions: {
+      title: 'Profile',
+      activeTintColor: colors.main,
+      tabBarIcon: ({ tintColor }) => (
+        <Icon2 name="message-bulleted" size={28} color={tintColor}/>
+      )
+    }
+  },
+},
+{
+  tabBarOptions: {
+    showIcon: true,
+    activeTintColor: colors.main,
+    style: {
+      display: 'none',
+    }
+  },
+});
+
 const rootNavigator = createSwitchNavigator({
   Auth: authNav,
-  // NoBottomNav: noBottomNav,
+  NoBottomNav: noBottomNav,
   Main: mainNav,
 }, {
   initialRouteName: 'Auth',

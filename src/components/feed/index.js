@@ -3,13 +3,18 @@ import View from './view';
 
 class Feed extends React.Component {
   componentDidMount() {
-    this.props.actions.getPosts();
+    this.getPosts();
   }
+
+  getPosts = () => {
+    this.props.actions.getPosts();
+  };
 
   render() {
     return (
       <View
         posts={this.props.state.posts}
+        scroll={this.getPosts}
       />
     );
   }

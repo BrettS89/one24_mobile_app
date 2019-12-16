@@ -18,7 +18,7 @@ export default StyleSheet.create({
     height: 70,
     borderRadius: 35,
     width: 70,
-    marginRight: 20,
+    marginRight: 15,
   },
   userName: {
     fontWeight: '700',
