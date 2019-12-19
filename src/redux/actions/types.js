@@ -38,3 +38,11 @@ export const SET_DISCOVER_POSTS = 'SET_DISCOVER_POSTS';
 export const SET_NEW_DISCOVER_POSTS = 'SET_NEW_DISCOVER_POSTS';
 export const SET_DISCOVER_INPUT = 'SET_SEARCH_INPUT';
 export const DISCOVER_SCROLL = 'DISCOVER_SCROLL';
+
+// comment
+export const ADD_COMMENT = 'ADD_COMMENT';
+export const SET_COMMENT = 'SET_COMMENT';
+
+// comments
+export const GET_COMMENTS = 'GET_COMMENTS';
+export const SET_COMMENTS = 'SET_COMMENTS';

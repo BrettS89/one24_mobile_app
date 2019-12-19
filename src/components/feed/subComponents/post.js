@@ -7,30 +7,58 @@ import Like from 'react-native-vector-icons/AntDesign';
 import Comment from 'react-native-vector-icons/SimpleLineIcons';
 import Options from 'react-native-vector-icons/Entypo';
 import AddUser from 'react-native-vector-icons/FontAwesome5';
+import { likePost as apiLikePost } from '../../../lib/api';
 
 export default function post({ post }) {
   const [following, setFollowing] = useState(false);
+  const [likes, setLikes] = useState(post.likes);
+  const [liked, setLiked] = useState(false);
   
   const renderProfilePhoto = () => {
     return post.profilePhoto
       ? <Image source={{ uri: post.profilePhoto }} resizeMode="cover" />
-      :  <Image source={USER_DEFAULT} style={styles.profileImage} />
+      : <Image source={USER_DEFAULT} style={styles.profileImage} />
   };
 
   const renderFollow = () => {
     if (!following && !post.following) {
       return (
-        <TouchableOpacity>
+        <TouchableOpacity onPress={follow}>
           <AddUser name="user-plus" size={16} color={colors.main} style={styles.userIcon} />
         </TouchableOpacity>
       );
     }
   };
 
+  const renderLikeIcon = () => {
+    if (!liked && !post.liked) {
+      return (
+        <TouchableOpacity onPress={likePost}>
+          <Like name="hearto" size={26} color={colors.main} />
+        </TouchableOpacity>
+      );
+    }
+    return (
+      <View>
+        <Like name="heart" size={26} color={colors.main} />
+      </View>
+    );
+  };
+
+  const likePost = () => {
+    setLiked(true);
+    setLikes(likes + 1);
+    apiLikePost({ post: post._id });
+  };
+
+  const follow = () => {
+    setFollowing(true);
+  };
+
   return (
     <View style={styles.postContainer}>
 
-      <View style={{ position: 'absolute', top: 1, flexDirection: 'row', width: '100%', paddingTop: 15, justifyContent: 'flex-end', zIndex: 50 }}>
+      <View style={styles.optionsButtonContainer}>
         <TouchableOpacity>
           <Options name="dots-three-horizontal" size={24} color="lightgray"  />
         </TouchableOpacity>
@@ -49,7 +77,7 @@ export default function post({ post }) {
         </Text>
       </View>
       <View style={styles.icons}>
-        <Like name="hearto" size={26} color={colors.main} />
+        {renderLikeIcon()}
         <Comment name="bubbles" size={28} color={colors.main} style={styles.middleIcon} />
       </View>
     </View>

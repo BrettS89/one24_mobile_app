@@ -42,5 +42,14 @@ export default StyleSheet.create({
   },
   userIcon: {
     padding: 10,
-  }
+  },
+  optionsButtonContainer: {
+    position: 'absolute',
+    top: 1,
+    flexDirection: 'row',
+    width: '100%',
+    paddingTop: 15,
+    justifyContent: 'flex-end',
+    zIndex: 50,
+  },
 });

@@ -152,3 +152,31 @@ export async function searchUsers(name, offset) {
   errorThrower(res, response);
   return response;
 }
+
+export async function likePost(body) {
+  const res = await fetch(`${URI}/post/like`, {
+    method: 'post',
+    headers: {
+      'Content-Type': 'application/json',
+      'authorization': await getToken(),
+    },
+    body: JSON.stringify(body),
+  });
+  const response = await res.json();
+  errorThrower(res, response);
+  return response;
+}
+
+export async function addComment(body) {
+  const res = await fetch(`${URI}/comment/add`, {
+    method: 'post',
+    headers: {
+      'Content-Type': 'application/json',
+      'authorization': await getToken(),
+    },
+    body: JSON.stringify(body),
+  });
+  const response = await res.json();
+  errorThrower(res, response);
+  return response;
+}
