@@ -1,20 +1,20 @@
-import Discover from '../components/discover';
+import Comments from '../components/comments';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import * as postsActions from '../redux/actions/posts';
+import * as commentActions from '../redux/actions/comments';
 import * as commentsActions from '../redux/actions/comments';
 
-function mapStateToProps({ posts: { discoverPosts } }) {
+function mapStateToProps({ comments: { comments } }) {
   return {
     state: {
-      posts: discoverPosts,
+      comments,
     },
   };
 }
 
 function mapDispatchToProps(dispatch) {
   const allActions = {
-    ...postsActions,
+    ...commentActions,
     ...commentsActions,
   };
 
@@ -23,4 +23,4 @@ function mapDispatchToProps(dispatch) {
   };
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(Discover);
+export default connect(mapStateToProps, mapDispatchToProps)(Comments);

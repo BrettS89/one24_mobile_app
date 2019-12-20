@@ -180,3 +180,16 @@ export async function addComment(body) {
   errorThrower(res, response);
   return response;
 }
+
+export async function getComments(post, offset) {
+  const res = await fetch(`${URI}/comments/get?offset=${offset}&posot=${post}`, {
+    method: 'get',
+    headers: {
+      'Content-Type': 'application/json',
+      'authorization': await getToken(),
+    },
+  });
+  const response = await res.json();
+  errorThrower(res, response);
+  return response;
+}

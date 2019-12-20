@@ -9,7 +9,7 @@ import Options from 'react-native-vector-icons/Entypo';
 import AddUser from 'react-native-vector-icons/FontAwesome5';
 import { likePost as apiLikePost } from '../../../lib/api';
 
-export default function post({ post }) {
+export default function post({ post, goToComments }) {
   const [following, setFollowing] = useState(false);
   const [likes, setLikes] = useState(post.likes);
   const [liked, setLiked] = useState(false);
@@ -78,7 +78,9 @@ export default function post({ post }) {
       </View>
       <View style={styles.icons}>
         {renderLikeIcon()}
-        <Comment name="bubbles" size={28} color={colors.main} style={styles.middleIcon} />
+        <TouchableOpacity onPress={() => goToComments(post._id)}>
+          <Comment name="bubbles" size={28} color={colors.main} style={styles.middleIcon} />
+        </TouchableOpacity>
       </View>
     </View>
   );

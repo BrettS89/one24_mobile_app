@@ -30,6 +30,7 @@ import AddPost from '../containers/addPost';
 import FindUsers from '../containers/findUsers';
 import Discover from '../containers/discover';
 import MyProfile from '../containers/myProfile';
+import Comments from '../containers/comments';
 
 const mainNav = createBottomTabNavigator({
   Feed: {
@@ -160,6 +161,23 @@ const noBottomNav = createBottomTabNavigator({
     }),
     navigationOptions: {
       title: 'Profile',
+      activeTintColor: colors.main,
+      tabBarIcon: ({ tintColor }) => (
+        <Icon2 name="message-bulleted" size={28} color={tintColor}/>
+      )
+    }
+  },
+  Comments: {
+    screen: createStackNavigator({
+      Comments: {
+        screen: Comments,
+        navigationOptions: {
+          headerLeft: <View style={{ marginLeft: 15 }}><Text>Comments</Text></View>
+        },
+      },
+    }),
+    navigationOptions: {
+      title: 'Comments',
       activeTintColor: colors.main,
       tabBarIcon: ({ tintColor }) => (
         <Icon2 name="message-bulleted" size={28} color={tintColor}/>

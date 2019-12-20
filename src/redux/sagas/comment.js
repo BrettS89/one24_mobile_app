@@ -3,6 +3,7 @@ import {
 } from 'redux-saga/effects';
 import * as actions from '../actions/types';
 import * as api from '../../lib/api';
+import { commentPost } from '../selectors';
 
 export default [
   addCommentWatcher,
@@ -14,6 +15,8 @@ function * addCommentWatcher() {
 
 function * addCommentHandler({ payload }) {
   try {
+    const postId = yield select(commentPost);
+    payload.post = postId;
     const { data } = yield call(api.addComment, payload);
     yield put({ type: actions.ADD_COMMENT, payload: data });
   } catch(e) {

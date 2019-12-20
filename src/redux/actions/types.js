@@ -46,3 +46,6 @@ export const SET_COMMENT = 'SET_COMMENT';
 // comments
 export const GET_COMMENTS = 'GET_COMMENTS';
 export const SET_COMMENTS = 'SET_COMMENTS';
+export const SCROLL_COMMENTS = 'SCROLL_COMMENTS';
+export const SET_SCROLL_COMMENTS = 'SET_SCROLL_COMMENTS';
+export const SET_POST_ID = 'SET_POST_ID';

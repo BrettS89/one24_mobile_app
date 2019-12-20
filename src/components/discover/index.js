@@ -10,11 +10,17 @@ class Discover extends React.Component {
     this.props.actions.discoverScroll();
   };
 
+  goToComments = postId => {
+    this.props.actions.setPostId(postId);
+    this.props.navigation.navigate('Comments');
+  };
+
   render() {
     return (
       <View
         posts={this.props.state.posts}
         scroll={this.scroll}
+        goToComments={this.goToComments}
       />
     );
   }
