@@ -13,11 +13,14 @@ import Add from 'react-native-vector-icons/FontAwesome5'
 import UserIcon from 'react-native-vector-icons/FontAwesome5';
 import Icon4 from 'react-native-vector-icons/MaterialCommunityIcons';
 import SearchIcon from 'react-native-vector-icons/FontAwesome5';
+import NotificationIcon from 'react-native-vector-icons/Ionicons';
 
 import Logo from '../shared/components/logo';
 import UserSearchBar from '../components/_misc/userSearchBar';
 import PostSearchBar from '../components/_misc/postSearchBar';
 import ProfileLink from '../components/_misc/profileLink';
+import HeaderBack from '../components/_misc/headerBack';
+import FinishProfileHeader from '../components/_misc/finishProfileHeader';
 
 // auth
 import Login from '../containers/login';
@@ -31,6 +34,8 @@ import FindUsers from '../containers/findUsers';
 import Discover from '../containers/discover';
 import MyProfile from '../containers/myProfile';
 import Comments from '../containers/comments';
+import Notifications from '../containers/notifications';
+import AddProfilePhoto from '../containers/addProfilePhoto';
 
 const mainNav = createBottomTabNavigator({
   Feed: {
@@ -84,6 +89,24 @@ const mainNav = createBottomTabNavigator({
       activeTintColor: colors.main,
       tabBarIcon: ({ tintColor }) => (
         <Add name="marker" size={20} color={tintColor}/>
+      )
+    }
+  },
+  Notifications: {
+    screen: createStackNavigator({
+      Notifications: {
+        screen: Notifications,
+        navigationOptions: {
+          headerLeft: <Logo />,
+          headerRight: <ProfileLink />,
+        },
+      },
+    }),
+    navigationOptions: {
+      title: 'Notifications',
+      activeTintColor: colors.main,
+      tabBarIcon: ({ tintColor }) => (
+        <NotificationIcon name="ios-notifications" size={28} color={tintColor}/>
       )
     }
   },
@@ -150,6 +173,24 @@ const authNav = createBottomTabNavigator({
 });
 
 const noBottomNav = createBottomTabNavigator({
+  AddProfilePhoto: {
+    screen: createStackNavigator({
+      AddProfilePhoto: {
+        screen: AddProfilePhoto,
+        navigationOptions: {
+          headerLeft: <Logo />,
+          headerRight: <FinishProfileHeader />
+        },
+      },
+    }),
+    navigationOptions: {
+      title: 'Profile',
+      activeTintColor: colors.main,
+      tabBarIcon: ({ tintColor }) => (
+        <Icon2 name="message-bulleted" size={28} color={tintColor}/>
+      )
+    }
+  },
   MyProfile: {
     screen: createStackNavigator({
       MyProfile: {
@@ -172,7 +213,8 @@ const noBottomNav = createBottomTabNavigator({
       Comments: {
         screen: Comments,
         navigationOptions: {
-          headerLeft: <View style={{ marginLeft: 15 }}><Text>Comments</Text></View>
+          title: 'Comments',
+          headerLeft: <HeaderBack />
         },
       },
     }),

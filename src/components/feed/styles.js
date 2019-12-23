@@ -52,4 +52,15 @@ export default StyleSheet.create({
     justifyContent: 'flex-end',
     zIndex: 50,
   },
+  viewCommentsButton: {
+    marginTop: 4,
+  },
+  viewComments : {
+    fontWeight: '700',
+    fontSize: 13,
+    color: colors.main,
+  },
+  likes: {
+    fontSize: 13,
+  }
 });

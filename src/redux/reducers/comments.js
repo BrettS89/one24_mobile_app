@@ -29,7 +29,7 @@ export default (state = INITIAL_STATE, { type, payload }) => {
     case SET_POST_ID:
       return {
         ...state,
-        postid: payload,
+        postId: payload,
       };
 
     default:

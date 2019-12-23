@@ -18,7 +18,7 @@ function * addCommentHandler({ payload }) {
     const postId = yield select(commentPost);
     payload.post = postId;
     const { data } = yield call(api.addComment, payload);
-    yield put({ type: actions.ADD_COMMENT, payload: data });
+    yield put({ type: actions.SET_COMMENT, payload: data });
   } catch(e) {
     console.log('addComment handler error: ', e);
   }

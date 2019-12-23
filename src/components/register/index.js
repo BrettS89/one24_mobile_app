@@ -21,12 +21,17 @@ class Register extends React.Component {
     this.props.navigation.navigate('Feed');
   };
 
+  toLogin = () => {
+    this.props.navigation.navigate('Login');
+  };
+
   render() {
     return (
       <View
         onTextChange={this.onTextChange}
         onRegister={this.onRegister}
         error={this.props.state.user.registrationError}
+        toLogin={this.toLogin}
       />
     );
   }

@@ -4,6 +4,7 @@ import appReducer from './app';
 import postsReducer from './posts';
 import usersReducer from './users';
 import commentsReducer from './comments';
+import notificationsReducer from './notifications';
 
 export default combineReducers({
   app: appReducer,
@@ -11,4 +12,5 @@ export default combineReducers({
   users: usersReducer,
   posts: postsReducer,
   comments: commentsReducer,
+  notifications: notificationsReducer,
 });

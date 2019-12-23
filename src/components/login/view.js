@@ -1,7 +1,8 @@
 import React from 'react';
-import { View, Text, TouchableOpacity } from 'react-native';
+import { View, Text, TouchableOpacity, Image } from 'react-native';
 import styles from './styles';
 import Input from '../../shared/components/Input';
+import { LOGO2 } from '../../../assets/images';
 
 export default function loginView(props) {
   function showError() {
@@ -15,8 +16,8 @@ export default function loginView(props) {
       <View style={styles.loginFormContainer}>
 
         <View style={styles.logoContainer}>
-          {/* <Image source={LOGO5} resizeMode="contain" style={{ width: 160, height: 50 }} /> */}
-          <Text>Daily</Text>
+          <Image source={LOGO2} resizeMode="contain" style={{ width: 160, height: 50 }} />
+          {/* <Text>Daily</Text> */}
         </View>
 
         <View style={{ marginTop: 40 }}>
@@ -30,7 +31,7 @@ export default function loginView(props) {
               onSubmitHandler={props.onLogin}
             />
           </View>
-          <View >
+          <View>
             <Input 
               name="password"
               labelText="password"
@@ -59,9 +60,16 @@ export default function loginView(props) {
             <Text>or</Text>
           </View>
           {facebookOrSpinner()} */}
-          <TouchableOpacity onPress={props.goRegister}>
-            <Text>Sign up</Text>
-          </TouchableOpacity>
+          <View style={styles.goRegister}>
+            <Text>
+              New to One 24? 
+            </Text>
+            <TouchableOpacity onPress={props.goRegister}>
+              <Text style={styles.signupText}>
+                Sign up
+              </Text>
+            </TouchableOpacity>
+          </View>
         </View>
 
 

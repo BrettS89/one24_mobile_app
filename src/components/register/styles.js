@@ -1,5 +1,5 @@
 import { StyleSheet } from 'react-native';
-import Colors from '../../shared/styles/colors';
+import colors from '../../shared/styles/colors';
 
 export default StyleSheet.create({
   container: {
@@ -28,14 +28,12 @@ export default StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'center', 
     alignItems: 'center',
-    // backgroundColor: Colors.secondary,
-    borderWidth: 3,
-    borderColor: Colors.main,
+    backgroundColor: colors.main,
     borderRadius: 50,
     height: 45
   },
   buttonText: {
-    color: Colors.main,
+    color: '#fff',
     fontWeight: '600',
     fontSize: 15,
   },
@@ -48,4 +46,13 @@ export default StyleSheet.create({
     fontSize: 12,
     color: 'red',
   },
+  loginText: {
+    fontWeight: '700',
+    color: colors.main,
+  },
+  loginContainer: {
+    marginVertical: 30,
+    width: '100%',
+    alignItems: 'center',
+  }
 });

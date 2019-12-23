@@ -2,6 +2,7 @@
 export const ON_APP_LOAD = 'ON_APP_LOAD';
 export const APP_LOADING = 'APP_LOADING';
 export const APP_NOT_LOADING = 'APP_NOT_LOADING';
+export const SET_PREV_SCREEN = 'SET_PREV_SCREEN';
 
 // user
 export const IS_LOGGED_IN = 'IS_LOGGED_IN';
@@ -10,6 +11,8 @@ export const ON_LOGIN = 'ON_LOGIN';
 export const SET_LOGIN_ERROR = 'SET_LOGIN_ERROR';
 export const SET_REGISTRATION_ERROR = 'SET_REGISTRATION_ERROR';
 export const CLEAR_AUTH_ERRORS = 'CLEAR_AUTH_ERRORS';
+export const ADD_PROFILE_PHOTO = 'ADD_PROFILE_PHOTO';
+export const FINISH_PROFILE = 'FINISH_PROFILE';
 export const ON_FOLLOW = 'ON_FOLLOW';
 export const ON_UNFOLLOW = 'UNFOLLOW';
 export const REMOVE_FOLLOWER = 'REMOVE_FOLLOWER';
@@ -49,3 +52,7 @@ export const SET_COMMENTS = 'SET_COMMENTS';
 export const SCROLL_COMMENTS = 'SCROLL_COMMENTS';
 export const SET_SCROLL_COMMENTS = 'SET_SCROLL_COMMENTS';
 export const SET_POST_ID = 'SET_POST_ID';
+
+// notifications
+export const GET_NOTIFICATIONS = 'GET_NOTIFICATIONS';
+export const SET_NOTIFICATIONS = 'SET_NOTIFICATIONS';

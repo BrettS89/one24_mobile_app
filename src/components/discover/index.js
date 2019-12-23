@@ -12,6 +12,7 @@ class Discover extends React.Component {
 
   goToComments = postId => {
     this.props.actions.setPostId(postId);
+    this.props.actions.setPrevScreen('Discover');
     this.props.navigation.navigate('Comments');
   };
 

@@ -8,7 +8,8 @@ class Auth extends React.Component {
 
   navigate = (status) => {
     if (status === 'success') {
-      this.props.navigation.navigate('Feed');
+      // this.props.navigation.navigate('Feed');
+      this.props.navigation.navigate('AddProfilePhoto');
     } else {
       this.props.navigation.navigate('Login');
     }

@@ -5,7 +5,7 @@ import CommentCard from './subComponents/comment';
 import SendIcon from 'react-native-vector-icons/Ionicons';
 import colors from '../../shared/styles/colors';
 
-export default function commentsView({ comments }) {
+export default function commentsView({ comments, addComment, onTextChange }) {
   return (
     <KeyboardAvoidingView style={styles.container}>
       <SafeAreaView style={{ flex: 1 }}>
@@ -24,10 +24,11 @@ export default function commentsView({ comments }) {
             <TextInput
               placeholder="Comment..."
               multiline={true}
+              onChangeText={onTextChange}
             />
           </View>
           <View>
-            <TouchableOpacity>
+            <TouchableOpacity onPress={addComment}>
               <SendIcon name="md-send" size={38} color={colors.main} />
             </TouchableOpacity>
           </View>

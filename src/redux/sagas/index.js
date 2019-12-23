@@ -6,6 +6,7 @@ import postSagas from './post';
 import postsSagas from './posts';
 import commentSagas from './comment';
 import commentsSagas from './comments';
+import notificationsSagas from './notifications';
 
 const forkList = sagasList => sagasList.map(saga => fork(saga));
 
@@ -18,5 +19,6 @@ export default function * root() {
     ...forkList(postsSagas),
     ...forkList(commentSagas),
     ...forkList(commentsSagas),
+    ...forkList(notificationsSagas),
   ]);
 }

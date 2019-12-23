@@ -28,14 +28,12 @@ export default StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'center', 
     alignItems: 'center',
-    // backgroundColor: Colors.secondary,
-    borderWidth: 3,
-    borderColor: colors.main,
+    backgroundColor: colors.main,
     borderRadius: 50,
     height: 45
   },
   buttonText: {
-    color: colors.main,
+    color: '#fff',
     fontWeight: '600',
     fontSize: 15,
   },
@@ -47,5 +45,16 @@ export default StyleSheet.create({
   errorText: {
     fontSize: 12,
     color: 'red',
+  },
+  goRegister: {
+    flexDirection: 'row',
+    width: '100%',
+    justifyContent: 'center',
+    marginVertical: 30,
+  },
+  signupText: {
+    fontWeight: '700',
+    color: colors.main,
+    marginLeft: 4,
   },
 });

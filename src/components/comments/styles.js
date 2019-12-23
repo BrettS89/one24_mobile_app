@@ -18,5 +18,26 @@ export default StyleSheet.create({
     alignItems: 'center',
     borderTopWidth: 1,
     borderTopColor: colors.midGrey
-  }
+  },
+  commentContainer: {
+    padding: 15,
+  },
+  userHeader: {
+    flexDirection: 'row',
+    marginBottom: 7,
+    alignItems: 'center',
+  },
+  profilePhoto: {
+    height: 40,
+    borderRadius: 20,
+    width: 40,
+    marginRight: 10,
+  },
+  name: {
+    fontSize: 16,
+    fontWeight: '700',
+  },
+  content: {
+    flexWrap: 'wrap',
+  },
 });

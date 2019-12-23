@@ -1,7 +1,8 @@
 import React from 'react';
-import { View, Text, TouchableOpacity } from 'react-native';
+import { View, Text, TouchableOpacity, Image } from 'react-native';
 import styles from './styles';
 import Input from '../../shared/components/Input';
+import { LOGO2 } from '../../../assets/images';
 
 export default function registrationView(props) {
   function showError() {
@@ -15,20 +16,23 @@ export default function registrationView(props) {
       <View style={styles.signupFormContainer}>
 
         <View style={styles.logoContainer}>
-          {/* <Image source={LOGO5} resizeMode="contain" style={{ width: 160, height: 50 }} /> */}
-          <Text>Signup</Text>
+          <Image source={LOGO2} resizeMode="contain" style={{ width: 160, height: 50 }} />
+          {/* <Text>Signup</Text> */}
         </View>
 
         <View style={{ marginTop: 40 }}>
           <View style={styles.inputContainer}>
-          <Input
-              name="firstname"
-              labelText="firstname"
-              email={false}
-              placeholder="First name"
-              onChangeText={email => props.onTextChange(email, 'firstName')}
-              onSubmitHandler={props.onRegister}
-            />
+            <Input
+                name="firstname"
+                labelText="firstname"
+                email={false}
+                placeholder="First name"
+                onChangeText={email => props.onTextChange(email, 'firstName')}
+                onSubmitHandler={props.onRegister}
+              />
+          </View>
+
+          <View style={styles.inputContainer}>
             <Input
               name="lastname"
               labelText="lastname"
@@ -37,6 +41,9 @@ export default function registrationView(props) {
               onChangeText={email => props.onTextChange(email, 'lastName')}
               onSubmitHandler={props.onRegister}
             />
+          </View>
+
+          <View style={styles.inputContainer}>
             <Input
               name="email"
               labelText="email"
@@ -46,6 +53,7 @@ export default function registrationView(props) {
               onSubmitHandler={props.onRegister}
             />
           </View>
+
           <View>
             <Input
               name="password"
@@ -72,10 +80,14 @@ export default function registrationView(props) {
             <Text style={styles.buttonText}>Sign up</Text>
           </TouchableOpacity>
 
-          <View style={{ width: '100%', alignItems: 'center', marginVertical: 5 }}>
-            <Text>or</Text>
-          </View>
-          {/* {facebookOrSpinner()} */}
+        </View>
+
+        <View style={styles.loginContainer}>
+          <TouchableOpacity onPress={props.toLogin}>
+            <Text style={styles.loginText}>
+              Login
+            </Text>
+          </TouchableOpacity>
         </View>
 
       </View>

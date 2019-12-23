@@ -1,12 +1,12 @@
 
 import React from 'react';
 import { View, Image, StyleSheet } from 'react-native';
-import { LOGO } from '../../../assets/images';
+import { LOGO2 } from '../../../assets/images';
 
 export default function logo(props) {
   return (
     <View>
-      <Image source={LOGO} resizeMode="contain" style={styles.logo} />
+      <Image source={LOGO2} resizeMode="contain" style={styles.logo} />
     </View>
   );
 }

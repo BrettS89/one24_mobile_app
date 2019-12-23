@@ -182,7 +182,20 @@ export async function addComment(body) {
 }
 
 export async function getComments(post, offset) {
-  const res = await fetch(`${URI}/comments/get?offset=${offset}&posot=${post}`, {
+  const res = await fetch(`${URI}/comments/get?offset=${offset}&post=${post}`, {
+    method: 'get',
+    headers: {
+      'Content-Type': 'application/json',
+      'authorization': await getToken(),
+    },
+  });
+  const response = await res.json();
+  errorThrower(res, response);
+  return response;
+}
+
+export async function getNotifications(offset = 0) {
+  const res = await fetch(`${URI}/notifications/get?offset=${offset}`, {
     method: 'get',
     headers: {
       'Content-Type': 'application/json',

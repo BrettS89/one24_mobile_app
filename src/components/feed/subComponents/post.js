@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { View, Text, Image, TouchableOpacity } from 'react-native';
 import styles from '../styles';
 import colors from '../../../shared/styles/colors';
-import { USER_DEFAULT, VADER } from '../../../../assets/images';
+import { USER_DEFAULT } from '../../../../assets/images';
 import Like from 'react-native-vector-icons/AntDesign';
 import Comment from 'react-native-vector-icons/SimpleLineIcons';
 import Options from 'react-native-vector-icons/Entypo';
@@ -16,7 +16,7 @@ export default function post({ post, goToComments }) {
   
   const renderProfilePhoto = () => {
     return post.profilePhoto
-      ? <Image source={{ uri: post.profilePhoto }} resizeMode="cover" />
+      ? <Image source={{ uri: post.profilePhoto }} style={styles.profileImage} resizeMode="cover" />
       : <Image source={USER_DEFAULT} style={styles.profileImage} />
   };
 
@@ -43,6 +43,33 @@ export default function post({ post, goToComments }) {
         <Like name="heart" size={26} color={colors.main} />
       </View>
     );
+  };
+
+  const renderLikes = () => {
+    if (likes) {
+      return (
+        <View>
+          <Text style={styles.likes}>
+            {likes} likes
+          </Text>
+        </View>
+      );
+    }
+  };
+
+  const renderViewComments = () => {
+    if (post.comments) {
+      return (
+        <TouchableOpacity
+          style={styles.viewCommentsButton}
+          onPress={() => goToComments(post._id)}
+        >
+          <Text style={styles.viewComments}>
+            View comments
+          </Text>
+        </TouchableOpacity>
+      );
+    }
   };
 
   const likePost = () => {
@@ -76,12 +103,19 @@ export default function post({ post, goToComments }) {
           {post.text}
         </Text>
       </View>
-      <View style={styles.icons}>
+
+      <View style={[styles.icons, { marginBottom: post.likes || post.comments ? 5 : 0 }]}>
         {renderLikeIcon()}
         <TouchableOpacity onPress={() => goToComments(post._id)}>
           <Comment name="bubbles" size={28} color={colors.main} style={styles.middleIcon} />
         </TouchableOpacity>
       </View>
+
+      <View style={styles.likesAndComments}>
+        {renderLikes()}
+        {renderViewComments()}
+      </View>
+
     </View>
   );
 }
