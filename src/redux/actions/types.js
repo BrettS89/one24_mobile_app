@@ -33,6 +33,7 @@ export const SET_FOLLOWING = 'SET_FOLLOWING';
 
 // post
 export const ADD_POST = 'ADD_POST';
+export const SET_ADDED_POST = 'SET_ADDED_POST';
 
 // posts
 export const GET_POSTS = 'GET_POSTS';

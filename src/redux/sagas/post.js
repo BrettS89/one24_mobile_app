@@ -15,7 +15,8 @@ function * addPostWatcher() {
 function * addPostHandler({ payload: { form, navigate } }) {
   try {
     yield put({ type: actions.APP_LOADING });
-    const res = yield call(api.addPost, form);
+    const { data } = yield call(api.addPost, form);
+    yield put({ type: actions.SET_ADDED_POST, payload: data });
     navigate();
     yield put({ type: actions.APP_NOT_LOADING });
   } catch(e) {
