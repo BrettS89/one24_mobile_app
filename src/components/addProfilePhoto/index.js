@@ -4,6 +4,8 @@ import * as ImageManipulator from 'expo-image-manipulator';
 import Constants from 'expo-constants';
 import * as Permissions from 'expo-permissions';
 import View from './view';
+import { getSignedUrl as apiGetSignedUrl, addProfilePhoto as apiAddProfilePhoto } from '../../lib/api';
+import s3Upload from '../../utils/uploadFileToS3';
 
 class AddProfilePhoto extends React.Component {
   state = {
@@ -15,9 +17,15 @@ class AddProfilePhoto extends React.Component {
     try {
       await this.getPermissionAsync();
       const image = await this.pickImage();
+      // start spinner
       const res = await fetch(image.uri);
       const blob = await res.blob();
-      console.log(blob);
+      const fileType = blob.data.type;
+      const fileExtension = fileType.split('/')[1];
+      const { data: { url, key } } = await apiGetSignedUrl(fileExtension);
+      await s3Upload(url, blob, fileType);
+      await apiAddProfilePhoto(key);
+      this.setState({ uploaded: true, profilePhoto: key });
     } catch(e) {
       console.log(e);
     }
@@ -41,10 +49,6 @@ class AddProfilePhoto extends React.Component {
     });
 
     return result;
-  };
-
-  uploadImage = (image) => {
-
   };
 
   render() {

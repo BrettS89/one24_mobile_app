@@ -20,6 +20,16 @@ export default function post({ post, goToComments }) {
       : <Image source={USER_DEFAULT} style={styles.profileImage} />
   };
 
+  const renderPhoto = () => {
+    if (post.photo) {
+      return (
+        <View style={{ marginBottom: 10 }}>
+          <Image source={{ uri: post.photo }} style={{ aspectRatio: 1/1 }} />
+        </View>  
+      );
+    }
+  };
+
   const renderFollow = () => {
     if (!following && !post.following) {
       return (
@@ -94,7 +104,7 @@ export default function post({ post, goToComments }) {
       <View style={styles.header}>
         {renderProfilePhoto()}
         <Text style={styles.userName}>
-          {post.firstName} {post.lastName}
+          {post.fullName}
         </Text>
         {renderFollow()}
       </View>
@@ -103,6 +113,8 @@ export default function post({ post, goToComments }) {
           {post.text}
         </Text>
       </View>
+      
+      {renderPhoto()}
 
       <View style={[styles.icons, { marginBottom: post.likes || post.comments ? 5 : 0 }]}>
         {renderLikeIcon()}

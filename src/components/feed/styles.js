@@ -7,12 +7,14 @@ export default StyleSheet.create({
     backgroundColor: '#fff',
   },
   postContainer: {
-    padding: 15,
+    paddingVertical: 15,
+    width: '100%',
   },
   header: {
     flexDirection: 'row',
     alignItems: 'center',
     marginBottom: 10,
+    paddingHorizontal: 15,
   },
   profileImage: {
     height: 70,
@@ -25,17 +27,18 @@ export default StyleSheet.create({
     fontSize: 18,
   },
   contentContainer: {
-
+    paddingHorizontal: 15,
   },
   content: {
     fontSize: 16,
     flexWrap: 'wrap',
     lineHeight: 22,
-    marginBottom: 20,
-    marginTop: 10,
+    marginBottom: 17,
+    marginTop: 7,
   },
   icons: {
     flexDirection: 'row',
+    paddingHorizontal: 15,
   },
   middleIcon: {
     marginHorizontal: 15,
@@ -51,9 +54,11 @@ export default StyleSheet.create({
     paddingTop: 15,
     justifyContent: 'flex-end',
     zIndex: 50,
+    paddingHorizontal: 20,
   },
   viewCommentsButton: {
     marginTop: 4,
+
   },
   viewComments : {
     fontWeight: '700',
@@ -62,5 +67,8 @@ export default StyleSheet.create({
   },
   likes: {
     fontSize: 13,
+  },
+  likesAndComments: {
+    paddingHorizontal: 15,
   }
 });

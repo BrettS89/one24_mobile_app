@@ -206,3 +206,28 @@ export async function getNotifications(offset = 0) {
   errorThrower(res, response);
   return response;
 }
+
+export async function getSignedUrl(fileType) {
+  const res = await fetch(`${URI}/s3/signedurl?filetype=${fileType}`, {
+    method: 'get',
+    headers: {
+      'Content-Type': 'application/json',
+      'authorization': await getToken(),
+    },
+  });
+  const response = await res.json();
+  errorThrower(res, response);
+  return response;
+}
+
+export async function addProfilePhoto(key) {
+  const res = await fetch(`${URI}/user/addprofilephoto?photo=${key}`, {
+    method: 'patch',
+    headers: {
+      'authorization': await getToken(),
+    },
+  });
+  const response = res.json();
+  errorThrower(res, response);
+  return response;
+}

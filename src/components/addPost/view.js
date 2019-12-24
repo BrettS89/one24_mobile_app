@@ -3,25 +3,43 @@ import { View, Text, TouchableOpacity } from 'react-native';
 import styles from './styles';
 import AddInput from '../../shared/components/addInput';
 import Photo from 'react-native-vector-icons/Ionicons';
+import Check from 'react-native-vector-icons/FontAwesome5';
 import colors from '../../shared/styles/colors';
 
-export default function addPostView(props) {
-  return (
-    <View style={styles.container}>
-      <View style={styles.multiMedia}>
-        <TouchableOpacity style={styles.multiButton}>
+export default function addPostView({ onTextChange, addPost, text, photo, pickImage }) {
+  const renderPhotoIcon = () => {
+    if (!photo) {
+      return (
+        <TouchableOpacity style={styles.multiButton} onPress={pickImage}>
           <Photo name="md-images" size={32} color={colors.main} />
           <Text style={styles.multiText}>
             Add photo
           </Text>
         </TouchableOpacity>
+      );
+    }
+    return (
+      <View style={styles.multiButton}>
+        <Check name="check" size={25} color={colors.main} style={{ paddingVertical: 4 }} />
+        <Text style={styles.multiText}>
+          Photo added
+        </Text>
+      </View>
+    )
+  };
+
+  return (
+    <View style={styles.container}>
+      <View style={styles.multiMedia}>
+       {renderPhotoIcon()}
       </View>
       <AddInput
         placeholder="Your daily post ..."
-        onChangeText={props.onTextChange}
-        value={props.text}
+        onChangeText={onTextChange}
+        value={text}
+        onSubmitHandler={addPost}
       />
-      <TouchableOpacity style={styles.addPostButton} onPress={props.addPost}>
+      <TouchableOpacity style={styles.addPostButton} onPress={addPost}>
         <Text style={styles.addPostText}>Post</Text>
       </TouchableOpacity>
     </View>

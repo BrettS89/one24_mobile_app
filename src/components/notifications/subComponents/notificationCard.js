@@ -6,7 +6,7 @@ import { USER_DEFAULT } from '../../../../assets/images';
 export default function notificationCard({ notification }) {
   const renderProfilePhoto = () => {
     return notification.otherUserId.photo
-      ? <Image source={{ uri: notification.otherUserId.photo }} resizeMode="cover" />
+      ? <Image source={{ uri: notification.otherUserId.photo }} style={styles.profileImage} resizeMode="cover" />
       : <Image source={USER_DEFAULT} style={styles.profileImage} />
   };
 

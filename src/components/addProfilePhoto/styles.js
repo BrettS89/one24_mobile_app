@@ -26,6 +26,7 @@ export default StyleSheet.create({
   },
   btnText: {
     fontWeight: '700',
+    fontSize: 16,
     color: colors.main,
   },
   uploadBtn: {
