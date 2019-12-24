@@ -2,16 +2,23 @@ import React from 'react';
 import { TouchableOpacity, Text, StyleSheet } from 'react-native';
 import { withNavigation } from 'react-navigation';
 import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
 import Next from 'react-native-vector-icons/Ionicons';
 import colors from '../../shared/styles/colors';
+import * as userActions from '../../redux/actions/user';
 
 function finishProfileHeader(props) {
-  const goBack = () => {
+
+  const finish = () => {
+    props.actions.finishAccountSetup(navigate);
+  };
+
+  const navigate = () => {
     props.navigation.navigate('Discover');
   };
 
   return (
-    <TouchableOpacity style={styles.button} onPress={goBack}>
+    <TouchableOpacity style={styles.button} onPress={finish}>
       <Text style={styles.finishText}>
         Finish
       </Text>
@@ -20,8 +27,17 @@ function finishProfileHeader(props) {
   );
 }
 
+function mapDispatchToProps(dispatch) {
+  const allActions = {
+    ...userActions,
+  };
 
-export default connect(null)(withNavigation(finishProfileHeader));
+  return {
+    actions: bindActionCreators(allActions, dispatch),
+  };
+}
+
+export default connect(null, mapDispatchToProps)(withNavigation(finishProfileHeader));
 
 const styles = StyleSheet.create({
   button: {

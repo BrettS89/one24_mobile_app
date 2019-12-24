@@ -1,4 +1,4 @@
-import { ON_LOGIN, ON_REGISTER, IS_LOGGED_IN, ON_FOLLOW, ON_UNFOLLOW } from './types';
+import { ON_LOGIN, ON_REGISTER, IS_LOGGED_IN, ON_FOLLOW, ON_UNFOLLOW, FINISH_ACCOUNT_SETUP } from './types';
 
 export const onLogin = payload => ({
   type: ON_LOGIN,
@@ -7,6 +7,11 @@ export const onLogin = payload => ({
 
 export const onRegister = payload => ({
   type: ON_REGISTER,
+  payload,
+});
+
+export const finishAccountSetup = payload => ({
+  type: FINISH_ACCOUNT_SETUP,
   payload,
 });
 

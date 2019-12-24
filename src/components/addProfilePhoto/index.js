@@ -18,6 +18,7 @@ class AddProfilePhoto extends React.Component {
       await this.getPermissionAsync();
       const image = await this.pickImage();
       // start spinner
+      this.props.actions.appIsLoading();
       const res = await fetch(image.uri);
       const blob = await res.blob();
       const fileType = blob.data.type;
@@ -26,7 +27,9 @@ class AddProfilePhoto extends React.Component {
       await s3Upload(url, blob, fileType);
       await apiAddProfilePhoto(key);
       this.setState({ uploaded: true, profilePhoto: key });
+      this.props.actions.appIsNotLoading();
     } catch(e) {
+      this.props.actions.appIsNotLoading();
       console.log(e);
     }
   };

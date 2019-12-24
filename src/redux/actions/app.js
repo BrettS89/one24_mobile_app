@@ -10,7 +10,7 @@ export const setPrevScreen = payload => ({
   payload,
 });
 
-export const appLoading = () => ({
+export const appIsLoading = () => ({
   type: APP_LOADING,
 });
 

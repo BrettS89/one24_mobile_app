@@ -1,4 +1,4 @@
-import { SET_LOGIN_ERROR, SET_REGISTRATION_ERROR, CLEAR_AUTH_ERRORS } from '../actions/types';
+import { SET_LOGIN_ERROR, SET_REGISTRATION_ERROR, CLEAR_AUTH_ERRORS, SET_USER_DATA } from '../actions/types';
 
 const INITIAL_STATE = {
   user: {},
@@ -26,6 +26,12 @@ export default (state = INITIAL_STATE, { type, payload }) => {
         ...state,
         registrationError: null,
         loginError: null,
+      };
+
+    case SET_USER_DATA:
+      return {
+        ...state,
+        user: payload,
       };
 
     default:

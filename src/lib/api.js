@@ -21,6 +21,18 @@ export async function isLoggedIn() {
   return response;
 }
 
+export async function getUserData() {
+  const res = await fetch(`${URI}/user/getuserdata`, {
+    method: 'get',
+    headers: {
+      'authorization': await getToken(),
+    },
+  });
+  const response = await res.json();
+  errorThrower(res, response);
+  return response;
+}
+
 export async function register(body) {
   const res = await fetch(`${URI}/user/register`, {
     method: 'post',
