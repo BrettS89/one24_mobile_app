@@ -16,11 +16,22 @@ export default StyleSheet.create({
   multiButton: {
     flexDirection: 'row',
     alignItems: 'center',
+    width: '100%'
+  },
+  multiButton2: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    width: '100%',
+    justifyContent: 'space-between',
   },
   multiText: {
     fontWeight: '700',
     color: colors.main,
     marginLeft: 7,
+  },
+  imageAddedRow: {
+    flexDirection: 'row',
+    alignItems: 'center',
   },
   addPostButton: {
     justifyContent: 'center',
@@ -34,5 +45,8 @@ export default StyleSheet.create({
     color: '#fff',
     fontWeight: '700',
     fontSize: 16,
+  },
+  removeText: {
+    color: colors.midGrey2,
   }
 });

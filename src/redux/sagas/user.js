@@ -5,13 +5,16 @@ import {
 import * as actions from '../actions/types';
 import * as api from '../../lib/api';
 import validateEmail from '../../utils/validateEmail';
+import { usernameInput } from '../selectors';
+import { validateCharacters, validateCharCount } from '../../utils/validateUsername';
 
 export default [
   loginWatcher,
   registerWatcher,
   followWatcher,
   unfollowWatcher,
-  finishAccountSetupWatcher
+  finishAccountSetupWatcher,
+  addUsernameWatcher,
 ];
 
 function * registerWatcher() {
@@ -30,6 +33,10 @@ function * unfollowWatcher() {
   yield takeLatest(actions.ON_UNFOLLOW, unfollowHandler);
 }
 
+function * addUsernameWatcher() {
+  yield takeLatest(actions.ADD_USERNAME, addUsernameHandler);
+}
+
 function * finishAccountSetupWatcher() {
   yield takeLatest(actions.FINISH_ACCOUNT_SETUP, finishAccountSetupHandler);
 }
@@ -41,7 +48,12 @@ function * loginHandler({ payload: { form, navigate } }) {
     const { data, token } = yield call(api.login, form);
     yield AsyncStorage.setItem('token', token);
     yield put({ type: actions.SET_USER_DATA, payload: data });
-    navigate();
+    if (!data.username) {
+      navigate('AddUsername');
+      yield put({ type: actions.APP_NOT_LOADING });
+      return;
+    }
+    navigate('Feed');
     yield put({ type: actions.APP_NOT_LOADING });
   } catch(e) {
     yield put({ type: actions.SET_LOGIN_ERROR, payload: e.message });
@@ -78,7 +90,6 @@ function * followHandler({ payload }) {
 
 function * unfollowHandler({ payload }) {
   try {
-    // console.log('U WOT', payload);
     yield call (api.unFollow, payload);
   } catch(e) {
     console.log('unfollow error: ', e.message);
@@ -96,5 +107,24 @@ function * finishAccountSetupHandler({ payload }) {
   } catch(e) {
     yield put({ type: actions.APP_NOT_LOADING });
     console.log('finishAccountSetupHandler error: ', e);
+  }
+}
+
+function * addUsernameHandler({ payload }) {
+  try {
+    yield put({ type: actions.APP_LOADING });
+    yield put({ type: actions.SET_USERNAME_ERROR, payload: null });
+    const username = yield select(usernameInput);
+    validateCharCount(username);
+    validateCharacters(username);
+    const { data } = yield call(api.addUsername, { username });
+    yield put({ type: actions.SET_USER_DATA, payload: data });
+    yield put({ type: actions.SET_USERNAME, payload: '' });
+    payload();
+    yield put({ type: actions.APP_NOT_LOADING });
+  } catch(e) {
+    yield put({ type: actions.SET_USERNAME_ERROR, payload: e.message });
+    yield put({ type: actions.APP_NOT_LOADING });
+    console.log('addUsernameHandler error: ', e);
   }
 }

@@ -1,4 +1,5 @@
 import React from 'react';
+import { Keyboard } from 'react-native';
 import * as ImagePicker from 'expo-image-picker';
 import * as ImageManipulator from 'expo-image-manipulator';
 import Constants from 'expo-constants';
@@ -19,13 +20,19 @@ class AddPost extends React.Component {
 
   addPost = async () => {
     // start spinner
-    let key = null
-    if (this.state.photo) {
-      key = await this.uploadImage();
+    this.props.actions.appIsLoading();
+    Keyboard.dismiss();
+      try {
+        let key = null
+      if (this.state.photo) {
+        key = await this.uploadImage();
+      }
+      if (!this.state.text && !this.state.photo) return;
+      this.props.actions.addPost({ form: { text: this.state.text, photo: key }, navigate: this.navigate });
+      this.setState({ text: null, photo: null });
+    } catch(e) {
+      console.log('add post error', e);
     }
-    if (!this.state.text && !this.state.photo) return;
-    this.props.actions.addPost({ form: { text: this.state.text, photo: key }, navigate: this.navigate });
-    this.setState({ text: null, photo: null });
   };
 
   navigate = () => {
@@ -42,6 +49,8 @@ class AddPost extends React.Component {
   };
 
   pickImage = async () => {
+    Keyboard.dismiss();
+    await this.getPermissionAsync();
     let result = await ImagePicker.launchImageLibraryAsync({
       mediaTypes: ImagePicker.MediaTypeOptions.All,
       allowsEditing: true,
@@ -62,6 +71,11 @@ class AddPost extends React.Component {
     return key;
   };
 
+  removeImage = () => {
+    Keyboard.dismiss();
+    this.setState({ photo: null });
+  };
+
   render() {
     return (
       <View
@@ -70,6 +84,7 @@ class AddPost extends React.Component {
         text={this.state.text}
         photo={this.state.photo}
         pickImage={this.pickImage}
+        removeImage={this.removeImage}
       />
     );
   }

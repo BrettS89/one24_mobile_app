@@ -1,5 +1,4 @@
 import React from 'react';
-import { View, Text } from 'react-native';
 import {
   createSwitchNavigator,
   createAppContainer,
@@ -8,21 +7,23 @@ import { createBottomTabNavigator } from 'react-navigation-tabs';
 import { createStackNavigator } from 'react-navigation-stack';
 
 import colors from '../shared/styles/colors';
+
+// icons
 import Icon2 from 'react-native-vector-icons/MaterialCommunityIcons';
 import Add from 'react-native-vector-icons/FontAwesome5'
 import UserIcon from 'react-native-vector-icons/FontAwesome5';
-import Icon4 from 'react-native-vector-icons/MaterialCommunityIcons';
-import SearchIcon from 'react-native-vector-icons/FontAwesome5';
 import NotificationIcon from 'react-native-vector-icons/Ionicons';
 
+// header components
 import Logo from '../shared/components/logo';
 import UserSearchBar from '../components/_misc/userSearchBar';
 import PostSearchBar from '../components/_misc/postSearchBar';
 import ProfileLink from '../components/_misc/profileLink';
 import HeaderBack from '../components/_misc/headerBack';
 import FinishProfileHeader from '../components/_misc/finishProfileHeader';
+import AddUsernameHeader from '../components/_misc/addUsernameButton';
 
-// auth
+// auth components 
 import Login from '../containers/login';
 import Register from '../containers/register';
 import Auth from '../containers/auth';
@@ -36,6 +37,7 @@ import MyProfile from '../containers/myProfile';
 import Comments from '../containers/comments';
 import Notifications from '../containers/notifications';
 import AddProfilePhoto from '../containers/addProfilePhoto';
+import AddUsername from '../containers/addUsername';
 
 const mainNav = createBottomTabNavigator({
   Feed: {
@@ -173,6 +175,24 @@ const authNav = createBottomTabNavigator({
 });
 
 const noBottomNav = createBottomTabNavigator({
+  AddUsername: {
+    screen: createStackNavigator({
+      AddUsername: {
+        screen: AddUsername,
+        navigationOptions: {
+          headerLeft: <Logo />,
+          headerRight: <AddUsernameHeader />
+        },
+      },
+    }),
+    navigationOptions: {
+      title: 'Add',
+      activeTintColor: colors.main,
+      tabBarIcon: ({ tintColor }) => (
+        <Icon2 name="message-bulleted" size={28} color={tintColor}/>
+      )
+    }
+  },
   AddProfilePhoto: {
     screen: createStackNavigator({
       AddProfilePhoto: {
@@ -184,7 +204,7 @@ const noBottomNav = createBottomTabNavigator({
       },
     }),
     navigationOptions: {
-      title: 'Profile',
+      title: 'Add profile photo',
       activeTintColor: colors.main,
       tabBarIcon: ({ tintColor }) => (
         <Icon2 name="message-bulleted" size={28} color={tintColor}/>

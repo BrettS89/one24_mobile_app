@@ -9,7 +9,9 @@ class Auth extends React.Component {
   navigate = (status) => {
     if (status === 'success') {
       // this.props.navigation.navigate('Feed');
-      this.props.navigation.navigate('AddProfilePhoto');
+      this.props.navigation.navigate('Feed');
+    } else if (status === 'noUsername') {
+      this.props.navigation.navigate('AddUsername');
     } else {
       this.props.navigation.navigate('Login');
     }

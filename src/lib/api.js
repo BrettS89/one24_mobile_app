@@ -243,3 +243,17 @@ export async function addProfilePhoto(key) {
   errorThrower(res, response);
   return response;
 }
+
+export async function addUsername(body) {
+  const res = await fetch(`${URI}/user/addusername`, {
+    method: 'patch',
+    headers: {
+      'Content-Type': 'application/json',
+      'authorization': await getToken(),
+    },
+    body: JSON.stringify(body),
+  });
+  const response = await res.json();
+  errorThrower(res, response);
+  return response;
+}

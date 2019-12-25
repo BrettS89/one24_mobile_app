@@ -1,9 +1,11 @@
-import { SET_LOGIN_ERROR, SET_REGISTRATION_ERROR, CLEAR_AUTH_ERRORS, SET_USER_DATA } from '../actions/types';
+import { SET_LOGIN_ERROR, SET_REGISTRATION_ERROR, CLEAR_AUTH_ERRORS, SET_USER_DATA, SET_USERNAME, SET_USERNAME_ERROR } from '../actions/types';
 
 const INITIAL_STATE = {
   user: {},
   loginError: null,
   registrationError: null,
+  usernameInput: '',
+  usernameError: null,
 };
 
 export default (state = INITIAL_STATE, { type, payload }) => {
@@ -32,6 +34,18 @@ export default (state = INITIAL_STATE, { type, payload }) => {
       return {
         ...state,
         user: payload,
+      };
+
+    case SET_USERNAME:
+      return {
+        ...state,
+        usernameInput: payload,
+      };
+    
+    case SET_USERNAME_ERROR:
+      return {
+        ...state,
+        usernameError: payload,
       };
 
     default:

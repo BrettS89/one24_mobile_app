@@ -17,6 +17,11 @@ function * appLoadHandler({ payload }) {
     // yield put({ type: actions.APP_LOADING });
     const { data } = yield call(api.isLoggedIn);
     yield put({ type: actions.SET_USER_DATA, payload: data.user });
+
+    if (!data.user.username) {
+      payload('noUsername');
+      return;
+    }
     // yield put({ type: actions.APP_NOT_LOADING });
     payload('success');
     // yield put({ type: actions.APP_NOT_LOADING });

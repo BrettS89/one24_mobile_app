@@ -20,8 +20,8 @@ class Login extends React.Component {
     this.props.actions.onLogin({ form: this.state, navigate: this.navigate });
   };
 
-  navigate = () => {
-    this.props.navigation.navigate('Feed');
+  navigate = (screen) => {
+    this.props.navigation.navigate(screen);
   };
 
   goRegister = () => {
