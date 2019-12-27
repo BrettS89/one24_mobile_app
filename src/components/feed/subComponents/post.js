@@ -9,7 +9,7 @@ import Options from 'react-native-vector-icons/Entypo';
 import AddUser from 'react-native-vector-icons/FontAwesome5';
 import { likePost as apiLikePost } from '../../../lib/api';
 
-export default function post({ post, goToComments }) {
+export default function post({ post, goToComments, followUser }) {
   const [following, setFollowing] = useState(false);
   const [likes, setLikes] = useState(post.likes);
   const [liked, setLiked] = useState(false);
@@ -90,6 +90,7 @@ export default function post({ post, goToComments }) {
 
   const follow = () => {
     setFollowing(true);
+    followUser(post.userId);
   };
 
   return (

@@ -4,6 +4,7 @@ import { bindActionCreators } from 'redux';
 import * as postsActions from '../redux/actions/posts';
 import * as commentsActions from '../redux/actions/comments';
 import * as appActions from '../redux/actions/app';
+import * as userActions from '../redux/actions/user';
 
 function mapStateToProps({ posts: { discoverPosts } }) {
   return {
@@ -18,6 +19,7 @@ function mapDispatchToProps(dispatch) {
     ...postsActions,
     ...commentsActions,
     ...appActions,
+    ...userActions,
   };
 
   return {

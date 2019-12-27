@@ -10,6 +10,10 @@ class Feed extends React.Component {
     this.props.actions.getPosts();
   };
 
+  followUser = id => {
+
+  };
+
   goToComments = postId => {
     this.props.actions.setPostId(postId);
     this.props.actions.setPrevScreen('Feed');

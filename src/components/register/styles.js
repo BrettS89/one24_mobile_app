@@ -6,15 +6,17 @@ export default StyleSheet.create({
     flex: 1,
     backgroundColor: '#fff',
     paddingHorizontal: 15,
+  },
+  contentContainer: {
     justifyContent: 'center',
     alignItems: 'center',
+    flex: 1,
   },
   logoContainer: {
     alignItems: 'center'
   },
   signupFormContainer: {
     width: 350,
-    height: '100%',
     justifyContent: 'center',
     borderRadius: 3,
     padding: 50,

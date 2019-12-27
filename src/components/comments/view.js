@@ -1,14 +1,15 @@
 import React from 'react';
-import { View, Text, FlatList, KeyboardAvoidingView, TouchableOpacity, SafeAreaView, TextInput } from 'react-native';
+import { Platform, View, Text, FlatList, KeyboardAvoidingView, TouchableOpacity, SafeAreaView, TextInput } from 'react-native';
 import styles from './styles';
 import CommentCard from './subComponents/comment';
 import SendIcon from 'react-native-vector-icons/Ionicons';
 import colors from '../../shared/styles/colors';
 
 export default function commentsView({ comments, addComment, onTextChange }) {
+  console.log(Platform);
   return (
-    <KeyboardAvoidingView style={styles.container}>
-      <SafeAreaView style={{ flex: 1 }}>
+    <KeyboardAvoidingView style={{ flex: 1 }} behavior="padding" keyboardVerticalOffset={Platform.OS === 'ios' ? 120 : 0}>
+      <SafeAreaView style={{ flex: 1, flexDirection: 'column', justifyContent: 'flex-start' }}>
         <FlatList
           data={comments}
           keyExtractor={comment => comment._id}

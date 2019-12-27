@@ -18,7 +18,7 @@ class Register extends React.Component {
   };
 
   navigate = () => {
-    this.props.navigation.navigate('Feed');
+    this.props.navigation.navigate('AddUsername');
   };
 
   toLogin = () => {

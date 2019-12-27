@@ -10,12 +10,12 @@ export default StyleSheet.create({
     width: '86%',
   },
   inputContainer: {
-    width: '100%',
+    // flex: 1,
     flexDirection: 'row',
     paddingHorizontal: 15,
     marginBottom: 5,
     justifyContent: 'space-between',
-    alignItems: 'center',
+    // alignItems: 'center',
     borderTopWidth: 1,
     borderTopColor: colors.midGrey
   },

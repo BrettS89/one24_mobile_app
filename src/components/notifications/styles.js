@@ -19,6 +19,7 @@ export default StyleSheet.create({
   mainText: {
     fontWeight: '700',
     flexWrap: 'wrap',
+    width: '80%',
     fontSize: 16,
   },
 });

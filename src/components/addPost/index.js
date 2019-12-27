@@ -21,7 +21,7 @@ class AddPost extends React.Component {
   addPost = async () => {
     // start spinner
     this.props.actions.appIsLoading();
-    Keyboard.dismiss();
+    // Keyboard.dismiss();
       try {
         let key = null
       if (this.state.photo) {
@@ -50,15 +50,17 @@ class AddPost extends React.Component {
 
   pickImage = async () => {
     Keyboard.dismiss();
-    await this.getPermissionAsync();
-    let result = await ImagePicker.launchImageLibraryAsync({
-      mediaTypes: ImagePicker.MediaTypeOptions.All,
-      allowsEditing: true,
-      aspect: [1, 1],
-      quality: 0.2,
-    });
-
-    this.setState({ photo: result.uri });
+    let result;
+    setTimeout(async () => {
+      await this.getPermissionAsync();
+      result = await ImagePicker.launchImageLibraryAsync({
+        mediaTypes: ImagePicker.MediaTypeOptions.All,
+        allowsEditing: true,
+        aspect: [1, 1],
+        quality: 0.2,
+      });
+      this.setState({ photo: result.uri });
+    }, 200);
   };
 
   uploadImage = async () => {

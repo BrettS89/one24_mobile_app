@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Text, TouchableOpacity, Image } from 'react-native';
+import { View, Text, TouchableOpacity, Image, KeyboardAvoidingView, ScrollView, Keyboard } from 'react-native';
 import styles from './styles';
 import Input from '../../shared/components/Input';
 import { LOGO2 } from '../../../assets/images';
@@ -12,8 +12,8 @@ export default function registrationView(props) {
   }
 
   return (
-    <View style={styles.container}>
-      <View style={styles.signupFormContainer}>
+    <ScrollView style={styles.container} contentContainerStyle={styles.contentContainer} keyboardShouldPersistTaps='handled'>
+      <KeyboardAvoidingView style={styles.signupFormContainer}>
 
         <View style={styles.logoContainer}>
           <Image source={LOGO2} resizeMode="contain" style={{ width: 160, height: 50 }} />
@@ -90,7 +90,7 @@ export default function registrationView(props) {
           </TouchableOpacity>
         </View>
 
-      </View>
-    </View>
+      </KeyboardAvoidingView>
+    </ScrollView>
   );
 }

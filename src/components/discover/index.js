@@ -10,6 +10,10 @@ class Discover extends React.Component {
     this.props.actions.discoverScroll();
   };
 
+  followUser = userId => {
+    this.props.actions.follow({ id: userId });
+  };
+
   goToComments = postId => {
     this.props.actions.setPostId(postId);
     this.props.actions.setPrevScreen('Discover');
@@ -22,6 +26,7 @@ class Discover extends React.Component {
         posts={this.props.state.posts}
         scroll={this.scroll}
         goToComments={this.goToComments}
+        followUser={this.followUser}
       />
     );
   }

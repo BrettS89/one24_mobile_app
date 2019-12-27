@@ -3,7 +3,7 @@ import { View, FlatList } from 'react-native';
 import styles from './styles';
 import Post from '../feed/subComponents/post';
 
-export default function discoverView({ posts, scroll, goToComments }) {
+export default function discoverView({ posts, scroll, goToComments, followUser }) {
   return (
     <View style={styles.container}>
       <FlatList
@@ -16,6 +16,7 @@ export default function discoverView({ posts, scroll, goToComments }) {
           <Post
             post={post.item}
             goToComments={goToComments}
+            followUser={followUser}
           />
         )}
       />
