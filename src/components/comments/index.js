@@ -1,5 +1,6 @@
 import React from 'react';
 import View from './view';
+import { BackHandler } from 'react-native';
 
 class Comments extends React.Component {
   state = {
@@ -8,6 +9,14 @@ class Comments extends React.Component {
 
   componentDidMount() {
     this.props.actions.getComments();
+    BackHandler.addEventListener(
+      'hardwareBackPress',
+      this.handleBackButtonPress,
+    );
+  }
+
+  componentWillUnmount() {
+    
   }
 
   addComment = () => {
@@ -16,6 +25,15 @@ class Comments extends React.Component {
 
   onTextChange = text => {
     this.setState({ comment: text });
+  };
+
+  handleBackButtonPress = () => {
+    this.props.navigation.navigate(this.props.state.prevScreen);
+    BackHandler.removeEventListener(
+      'hardwareBackPress',
+      this.handleBackButtonPress
+    );
+    return true;
   };
 
   render() {

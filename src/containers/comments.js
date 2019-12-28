@@ -4,10 +4,11 @@ import { bindActionCreators } from 'redux';
 import * as commentActions from '../redux/actions/comment';
 import * as commentsActions from '../redux/actions/comments';
 
-function mapStateToProps({ comments: { comments } }) {
+function mapStateToProps({ comments: { comments }, app: { prevScreen } }) {
   return {
     state: {
       comments,
+      prevScreen,
     },
   };
 }
